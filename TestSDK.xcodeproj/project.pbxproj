@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1568963B2BE123A1003D709A /* WebViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568963A2BE123A1003D709A /* WebViewProvider.swift */; };
 		15B08D812BDF997100FA144D /* TestSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 15B08D802BDF997100FA144D /* TestSDK.docc */; };
 		15B08D872BDF997200FA144D /* TestSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B08D7C2BDF997100FA144D /* TestSDK.framework */; };
 		15B08D8C2BDF997200FA144D /* TestSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B08D8B2BDF997200FA144D /* TestSDKTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1568963A2BE123A1003D709A /* WebViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProvider.swift; sourceTree = "<group>"; };
 		15B08D7C2BDF997100FA144D /* TestSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B08D7F2BDF997100FA144D /* TestSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSDK.h; sourceTree = "<group>"; };
 		15B08D802BDF997100FA144D /* TestSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TestSDK.docc; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				15B08D7F2BDF997100FA144D /* TestSDK.h */,
 				15B08D802BDF997100FA144D /* TestSDK.docc */,
+				1568963A2BE123A1003D709A /* WebViewProvider.swift */,
 			);
 			path = TestSDK;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1568963B2BE123A1003D709A /* WebViewProvider.swift in Sources */,
 				15B08D812BDF997100FA144D /* TestSDK.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +400,7 @@
 		15B08D942BDF997200FA144D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -411,6 +416,7 @@
 		15B08D952BDF997200FA144D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
