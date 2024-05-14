@@ -6,7 +6,7 @@ public class WebViewProvider {
 
     private var webView: WKWebView!
     private var permissionsAllowed: Bool = false
-    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/echotest.html")!
+    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/test.html")!
     
     public init() {}
 
@@ -47,14 +47,12 @@ public class WebViewProvider {
     }
     
     public func setUser(phone: String) {
-//        let js = "setUserData('\(phone)');"
-        let js = "test();"
-//        let js = "window.setUserData({phone: \"+7777777\"});"
+        let js = "setUserData('\(phone)');"
         webView.evaluateJavaScript(js) { (result, error) in
             if let error = error {
-                print("Error: \(error)")
+                print("WebViewProvider-setUser: \(error)")
             } else {
-                print("Data sent successfully")
+                print("WebViewProvider-setUser: Data have set successfully")
             }
         }
     }
