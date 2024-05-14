@@ -1,1 +1,11 @@
-Error Domain=WKErrorDomain Code=4 "A JavaScript exception occurred" UserInfo={WKJavaScriptExceptionLineNumber=0, WKJavaScriptExceptionMessage=TypeError: undefined is not a function, WKJavaScriptExceptionColumnNumber=0, NSLocalizedDescription=A JavaScript exception occurred}
+    public func setUser(phone: String) {
+        let js = "setUserData('\(phone)');"
+//        let js = "window.setUserData({phone: \"+7777777\"});"
+        webView.evaluateJavaScript(js) { (result, error) in
+            if let error = error {
+                print("Error: \(error)")
+            } else {
+                print("Data sent successfully")
+            }
+        }
+    }
