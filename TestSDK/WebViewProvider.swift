@@ -6,7 +6,7 @@ public class WebViewProvider {
 
     private var webView: WKWebView!
     private var permissionsAllowed: Bool = false
-    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/test.html")!
+    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/event-test.html")!
     
     public init() {}
 
@@ -18,17 +18,30 @@ public class WebViewProvider {
             return false
         }
         
+        clearCache()
+        
         let conf = WKWebViewConfiguration()
             
         if #available(iOS 14.0, *) {
+//            WKWebpagePreferences().preferredContentMode = .mobile
+//            WKWebpagePreferences().allowsContentJavaScript = true
+//            WKWebViewConfiguration().websiteDataStore = WKWebsiteDataStore.nonPersistent()
+//            WKWebViewConfiguration().preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+            
             let preference = WKWebpagePreferences()
             preference.preferredContentMode = .mobile
             preference.allowsContentJavaScript = true
-            
             conf.defaultWebpagePreferences = preference
+            conf.websiteDataStore = WKWebsiteDataStore.nonPersistent()
+            conf.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
             
-            webView.configuration.userContentController.add(MessageHandler(), name: "webrtcDisconnected")
-            webView.load(URLRequest(url: url))
+            
+            webView.configuration.userContentController.add(MessageHandler(), name: "jsHandler")
+            
+            var request = URLRequest(url: url)
+            request.cachePolicy = .reloadIgnoringLocalCacheData
+            
+            webView.load(request)
             
             print("WebViewProvider: webView has loaded")
             return true
@@ -39,6 +52,12 @@ public class WebViewProvider {
             print("WebViewProvider: webView has loaded, but ios version is too low")
             return true
         }
+    }
+    
+    private func clearCache() {
+            URLCache.shared.removeAllCachedResponses()
+            URLCache.shared.diskCapacity = 0
+            URLCache.shared.memoryCapacity = 0
     }
     
     public func setWebView(webView: WKWebView) {
@@ -56,39 +75,6 @@ public class WebViewProvider {
             }
         }
     }
-    
-    
-    
-//    public func requestPermissions(completion: @escaping () -> Void) {
-//        let group = DispatchGroup()
-//
-//        group.enter()
-//        AVCaptureDevice.requestAccess(for: .audio) {[weak self] granted in
-//            guard self != nil else {return}
-//            if(granted) {
-//                DispatchQueue.main.async {
-////                    self.checkPermissions()
-//                    group.leave()
-//                }
-//            }
-//        }
-//
-//        group.enter()
-//        AVCaptureDevice.requestAccess(for: .video) {[weak self] granted in
-//            guard self != nil else {return}
-//            if(granted) {
-//                DispatchQueue.main.async {
-////                    self.checkPermissions()
-//                    group.leave()
-//                }
-//            }
-//        }
-//
-//        group.notify(queue: .main) {
-//            self.checkPermissions()
-//            completion()
-//        }
-//    }
     
     private func requestPermissions() {
         AVCaptureDevice.requestAccess(for: .video) {[weak self] granted in

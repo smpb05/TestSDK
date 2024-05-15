@@ -7,7 +7,7 @@ public class MessageHandler: NSObject, WKScriptMessageHandler {
         
         print(message.body)
         
-        if message.name == "webrtcDisconnected" {
+        if message.name == "jsHandler" {
             print("webrtcDisconnected")
         }
     }
