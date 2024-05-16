@@ -3,12 +3,17 @@ import WebKit
 
 public class MessageHandler: NSObject, WKScriptMessageHandler {
     
+    var callback: ((String) -> Void)?
+    
     public func userContentController(_ userContent: WKUserContentController, didReceive message: WKScriptMessage) {
         
-        print(message.body)
-        
         if message.name == "jsHandler" {
-            print("webrtcDisconnected")
+            if let body = message.body as? String {
+                callback?(body)
+            }
+            else {
+                print("MessageHandler: message body that I got from web page is not a String")
+            }
         }
     }
 }
