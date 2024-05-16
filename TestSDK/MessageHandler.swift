@@ -1,9 +1,10 @@
+
 import Foundation
 import WebKit
 
 public class MessageHandler: NSObject, WKScriptMessageHandler {
     
-    var callback: ((String) -> Void)?
+    public var callback: ((String) -> Void)?
     
     public func userContentController(_ userContent: WKUserContentController, didReceive message: WKScriptMessage) {
         

@@ -5,10 +5,11 @@ import AVFoundation
 public class WebViewProvider {
 
     private var webView: WKWebView!
+    private var messageHandler: MessageHandler!
     private var permissionsAllowed: Bool = false
     private let url: URL = URL(string: "https://mvc.t2m.kz/demos/test.html")!
     
-    public init() {}
+    public init(){}
 
     public func loadPage() -> Bool {
         checkPermissions()
@@ -26,7 +27,7 @@ public class WebViewProvider {
             preference.allowsContentJavaScript = true
             conf.defaultWebpagePreferences = preference
         
-            webView.configuration.userContentController.add(Tets(), name: "jsHandler")
+            webView.configuration.userContentController.add(messageHandler, name: "jsHandler")
         
             webView.load(URLRequest(url: url))
             
@@ -41,8 +42,9 @@ public class WebViewProvider {
         }
     }
     
-    public func setWebView(webView: WKWebView) {
+    public func setWebView(webView: WKWebView, messageHandler: MessageHandler) {
         self.webView = webView
+        self.messageHandler = messageHandler
         requestPermissions()
     }
     

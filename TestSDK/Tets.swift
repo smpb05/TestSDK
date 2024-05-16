@@ -15,14 +15,14 @@ public class Tets: NSObject, WKScriptMessageHandler {
     public func userContentController(_ userContent: WKUserContentController, didReceive message: WKScriptMessage) {
         
         if message.name == "jsHandler" {
-            if let callback = callback {
-                print("Callback workds")
-                callback(message.body as! String)
-            } else
-            {
-                print("not working")
+            if let body = message.body as? String {
+                callback?(body)
+            }
+            else {
+                print("MessageHandler: message body that I got from web page is not a String")
             }
         }
+        
     }
     
 }
