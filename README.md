@@ -1,1 +1,9 @@
-Error Domain=WKErrorDomain Code=4 "A JavaScript exception occurred" UserInfo={WKJavaScriptExceptionLineNumber=1, WKJavaScriptExceptionMessage=ReferenceError: Can't find variable: test, WKJavaScriptExceptionColumnNumber=5, WKJavaScriptExceptionSourceURL=https://mvc.t2m.kz/demos/echotest.html, NSLocalizedDescription=A JavaScript exception occurred}
+        let fff = WebViewProvider()
+        fff.setWebView(webView: webView)
+        Tets().callback = { data in
+            print("Received data: \(data)")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+            fff.loadPage()
+        }
