@@ -1,9 +1,16 @@
-        let fff = WebViewProvider()
-        fff.setWebView(webView: webView)
-        Tets().callback = { data in
-            print("Received data: \(data)")
+// Example
+
+    @IBOutlet weak var webView: WKWebView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var messageHandler = MessageHandler()
+        messageHandler.callback = { data in
+            // call has ended
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-            fff.loadPage()
-        }
+        var wvProviderb = WebViewProvider()
+        wvProviderb.setWebView(webView: webView, messageHandler: messageHandler)
+        
+        let pageLoaded = wvProviderb.loadPage()
+        print(pageLoaded)
