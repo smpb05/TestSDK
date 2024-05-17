@@ -1,14 +1,8 @@
-//
-//  Tets.swift
-//  TestSDK
-//
-//  Created by Anastasia Filinskaya on 16.05.2024.
-//
 
 import Foundation
 import WebKit
 
-public class Tets: NSObject, WKScriptMessageHandler {
+public class MessageHandler: NSObject, WKScriptMessageHandler {
     
     public var callback: ((String) -> Void)?
     
@@ -22,7 +16,5 @@ public class Tets: NSObject, WKScriptMessageHandler {
                 print("MessageHandler: message body that I got from web page is not a String")
             }
         }
-        
     }
-    
 }
