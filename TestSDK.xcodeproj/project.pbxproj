@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1563EFAF2BF619A100EDAABF /* MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1563EFAE2BF619A000EDAABF /* MessageHandler.swift */; };
 		1568963B2BE123A1003D709A /* WebViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568963A2BE123A1003D709A /* WebViewProvider.swift */; };
+		1583E5AC2BFF26FD0060933D /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583E5AB2BFF26FD0060933D /* UIDevice.swift */; };
 		15B08D812BDF997100FA144D /* TestSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = 15B08D802BDF997100FA144D /* TestSDK.docc */; };
 		15B08D872BDF997200FA144D /* TestSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B08D7C2BDF997100FA144D /* TestSDK.framework */; };
 		15B08D8C2BDF997200FA144D /* TestSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B08D8B2BDF997200FA144D /* TestSDKTests.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		1563EFAE2BF619A000EDAABF /* MessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHandler.swift; sourceTree = "<group>"; };
 		1568963A2BE123A1003D709A /* WebViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProvider.swift; sourceTree = "<group>"; };
+		1583E5AB2BFF26FD0060933D /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		15B08D7C2BDF997100FA144D /* TestSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B08D7F2BDF997100FA144D /* TestSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestSDK.h; sourceTree = "<group>"; };
 		15B08D802BDF997100FA144D /* TestSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TestSDK.docc; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				15B08D802BDF997100FA144D /* TestSDK.docc */,
 				1568963A2BE123A1003D709A /* WebViewProvider.swift */,
 				1563EFAE2BF619A000EDAABF /* MessageHandler.swift */,
+				1583E5AB2BFF26FD0060933D /* UIDevice.swift */,
 			);
 			path = TestSDK;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				1568963B2BE123A1003D709A /* WebViewProvider.swift in Sources */,
 				1563EFAF2BF619A100EDAABF /* MessageHandler.swift in Sources */,
 				15B08D812BDF997100FA144D /* TestSDK.docc in Sources */,
+				1583E5AC2BFF26FD0060933D /* UIDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

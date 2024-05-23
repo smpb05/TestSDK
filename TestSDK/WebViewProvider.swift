@@ -7,7 +7,8 @@ public class WebViewProvider {
     private var webView: WKWebView!
     private var messageHandler: MessageHandler!
     private var permissionsAllowed: Bool = false
-    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/test.html")!
+    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/echotest.html")!
+    public static let provider = WebViewProvider()
     
     public init(){}
 
@@ -45,7 +46,25 @@ public class WebViewProvider {
     public func setWebView(webView: WKWebView, messageHandler: MessageHandler) {
         self.webView = webView
         self.messageHandler = messageHandler
+        
+        print(UIDevice.modelName)
         requestPermissions()
+    }
+    
+    public func setDeviceData() {
+        let device = UIDevice.modelName
+        let ios = UIDevice.current.systemVersion
+        let json = "{device: \"\(device)\", ios: \"\(ios)\"}"
+        print(json)
+        
+        let js = "setDeviceData('\(json)');"
+        webView.evaluateJavaScript(js) { (result, error) in
+            if let error = error {
+                print("WebViewProvider-setDeviceData: \(error)")
+            } else {
+                print("WebViewProvider-setDeviceData: Data have set successfully")
+            }
+        }
     }
     
     public func setUser(phone: String) {
