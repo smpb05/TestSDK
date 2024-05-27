@@ -14,3 +14,6 @@
         
         let pageLoaded = wvProviderb.loadPage()
         print(pageLoaded)
+
+
+https://web-videobank.halykbank.kz/qa/client/#/personalcall?callHash=6D600C1912B755E9BDE45CBA5A965871
