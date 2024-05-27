@@ -7,7 +7,7 @@ public class WebViewProvider {
     private var webView: WKWebView!
     private var messageHandler: MessageHandler!
     private var permissionsAllowed: Bool = false
-    private let url: URL = URL(string: "https://mvc.t2m.kz/demos/echotest.html")!
+    private let url: URL = URL(string: "https://web-videobank.halykbank.kz/qa/client/#/personalcall?callHash=6D600C1912B755E9BDE45CBA5A965871")!
     public static let provider = WebViewProvider()
     
     public init(){}
