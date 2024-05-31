@@ -4,22 +4,30 @@ import WebKit
 
 public class MessageHandler: NSObject, WKScriptMessageHandler {
     
-    public var callback: ((String) -> Void)?
+    public var onCallFinish: (() -> Void)?
     
     public func userContentController(_ userContent: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard message.name == "jsHandler",
+        let body = message.body as? String else {
+            print("MessageHandler: Invalid message received")
+            return
+        }
         
-        if message.name == "jsHandler" {
-            if let body = message.body as? String {
-                callback?(body)
-                print("MessageHandler got message: \(body)")
-                
-                if(body=="getDeviceData") {
-                    WebViewProvider.provider.setDeviceData()
-                }
+        print("MessageHandler got message: \(body)")
+        
+        switch body {
+        case "getDeviceData":
+            WebViewProvider.provider.setDeviceData()
+            
+        case "onCallFinish":
+            if let onCallFinish = onCallFinish {
+                onCallFinish()
+            } else {
+                print("MessageHandler onCallFinish is not defined")
             }
-            else {
-                print("MessageHandler: message body that I got from web page is not a String")
-            }
+            
+        default:
+            break;
         }
     }
 }

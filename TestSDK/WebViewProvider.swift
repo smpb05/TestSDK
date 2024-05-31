@@ -7,7 +7,12 @@ public class WebViewProvider {
     private var webView: WKWebView!
     private var messageHandler: MessageHandler!
     private var permissionsAllowed: Bool = false
-    private let url: URL = URL(string: "https://web-videobank.halykbank.kz/qa/client/#/personalcall?callHash=6D600C1912B755E9BDE45CBA5A965871")!
+    
+    private var urlAudio: URL = URL(string: "https://mvc.t2m.kz/demos/test.html")!
+    private var urlVideo: URL = URL(string: "https://mvc.t2m.kz/demos/echotest.html")!
+    private lazy var url: URL = urlAudio
+    
+    private var isVideoCall: Bool = false
     public static let provider = WebViewProvider()
     
     public init(){}
@@ -43,11 +48,18 @@ public class WebViewProvider {
         }
     }
     
-    public func setWebView(webView: WKWebView, messageHandler: MessageHandler) {
+    public func setWebView(webView: WKWebView, messageHandler: MessageHandler, isVideoCall: Bool) {
         self.webView = webView
         self.messageHandler = messageHandler
+        self.isVideoCall = isVideoCall
         
-        print(UIDevice.modelName)
+        if isVideoCall {
+            url = urlVideo
+        }
+        else {
+            url = urlAudio
+        }
+        
         requestPermissions()
     }
     
@@ -79,7 +91,7 @@ public class WebViewProvider {
     }
     
     private func requestPermissions() {
-        AVCaptureDevice.requestAccess(for: .video) {[weak self] granted in
+        AVCaptureDevice.requestAccess(for: .audio) {[weak self] granted in
             guard let self = self else {return}
             if(granted) {
                 DispatchQueue.main.async {
@@ -88,7 +100,11 @@ public class WebViewProvider {
             }
         }
         
-        AVCaptureDevice.requestAccess(for: .audio) {[weak self] granted in
+        if !isVideoCall {
+            return
+        }
+        
+        AVCaptureDevice.requestAccess(for: .video) {[weak self] granted in
             guard let self = self else {return}
             if(granted) {
                 DispatchQueue.main.async {
@@ -102,10 +118,16 @@ public class WebViewProvider {
         let videoAuthorized = AVCaptureDevice.authorizationStatus(for: .video) == .authorized
         let audioAuthorized = AVCaptureDevice.authorizationStatus(for: .audio) == .authorized
         
-        print("WebViewProvider: camera access granted - " + String(videoAuthorized))
+        if isVideoCall {
+            print("WebViewProvider: camera access granted - " + String(videoAuthorized))
+        }
         print("WebViewProvider: microphone access granted - " + String(audioAuthorized))
         
         if videoAuthorized && audioAuthorized {
+            permissionsAllowed = true
+        }
+        
+        if !isVideoCall && audioAuthorized {
             permissionsAllowed = true
         }
     }
