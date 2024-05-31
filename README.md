@@ -4,16 +4,13 @@
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var messageHandler = MessageHandler()
-        messageHandler.callback = { data in
-            // call has ended
+        let messageHandler = MessageHandler()
+        messageHandler.onCallFinish = {
+            print("Received data: call has finished")
         }
         
-        var wvProviderb = WebViewProvider()
-        wvProviderb.setWebView(webView: webView, messageHandler: messageHandler)
+        var provider = WebViewProvider()
+        provider.setWebView(webView: webView, messageHandler: messageHandler, isVideoCall: false)
         
-        let pageLoaded = wvProviderb.loadPage()
+        let pageLoaded = provider.loadPage()
         print(pageLoaded)
-
-
-https://web-videobank.halykbank.kz/qa/client/#/personalcall?callHash=6D600C1912B755E9BDE45CBA5A965871
